@@ -106,7 +106,10 @@ document.addEventListener("DOMContentLoaded", function() {
     initGallery();
     initReturnExploration();
     animateNavLinks();
-    
+    setTimeout(() => {
+    initOkavangoTranslator();
+}, 1000);
+	
     // Gestion du redimensionnement
     window.addEventListener('resize', handleResize);
     
@@ -1503,4 +1506,14 @@ if (window.performance && window.performance.mark) {
         const measure = window.performance.getEntriesByName('into-the-okavango-load-time')[0];
         logOkavangoMessage(`Application chargée en ${Math.round(measure.duration)}ms`);
     });
+}
+
+// Variables globales pour la traduction
+let currentLanguage = 'fr';
+
+// Fonction de traduction simple qui utilise OkavangoTranslator
+function translateSite(newLang) {
+    if (window.okavangoTranslator) {
+        window.okavangoTranslator.translatePage(newLang);
+    }
 }
